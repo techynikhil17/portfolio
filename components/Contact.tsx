@@ -26,7 +26,7 @@ const Contact: React.FC = () => {
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
           <a 
-            href="nikhilchowdary334@gmail.com" 
+            href="mailto:nikhilchowdary334@gmail.com" 
             className="px-8 py-4 bg-transparent border border-neon-green text-neon-green font-mono rounded hover:bg-neon-green/10 transition-all duration-300 flex items-center gap-2"
           >
             <Mail size={18} /> Say Hello
