@@ -15,12 +15,12 @@ export const PROJECTS: Project[] = [
     id: "ghostfolio",
     title: "GhostFolio",
     shortDescription: "AI-powered startup autopsy & revival strategy platform.",
-    tags: ["GenAI", "Next.js", "Gemini API", "Vercel"],
+    tags: ["GenAI", "React", "Gemini API", "Vercel"],
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
     overview: "GhostFolio is an AI-powered platform that analyzes failed startups and produces actionable revival strategies using real datasets and Gemini API intelligence.",
     problemStatement: "Young founders repeat the same mistakes of past failed startups. GhostFolio converts failure data into learning material and actionable pivots.",
     datasetDetails: {
-      source: "100+ failed startup profiles from Failory and other public sources.",
+      source: "30+ failed startup profiles from Failory and other public sources.",
       fields: ["Category", "Funding", "Market", "Team Size", "Failure Reason", "Business Model", "Year"]
     },
     features: [
@@ -32,13 +32,13 @@ export const PROJECTS: Project[] = [
       "Real API endpoint served from Vercel"
     ],
     architecture: {
-      frontend: "Next.js + Tailwind",
+      frontend: "React + Tailwind",
       backend: "Vercel Edge Functions",
       ai_model: "Gemini API",
       data: "Custom JSON dataset with 30+ entries",
       description: "User selects startup → System loads structured data → Sends context to Gemini → Gets pivot ideas, viability score, new names → Shows animated result pages."
     },
-    techStack: ["Next.js", "Tailwind CSS", "TypeScript", "Gemini API", "Vercel"],
+    techStack: ["React", "Tailwind CSS", "TypeScript", "Gemini API", "Vercel"],
     pipeline: "User selects startup → System loads structured data → Sends context to Gemini → Gets pivot ideas, viability score, new names → Shows animated result pages.",
     uniqueSellingPoints: [
       "Not a toy project — uses real startup data.",
@@ -67,7 +67,6 @@ export const PROJECTS: Project[] = [
     ],
     architecture: {
       backend: "FastAPI",
-      hosting: "Replit",
       ai_model: "Saved XGBoost .json or pickle",
       description: "Communication: JSON POST request → model → prediction."
     },
@@ -77,7 +76,7 @@ export const PROJECTS: Project[] = [
       featureEngineering: "Category encoding, balancing, normalization",
       optimization: "Tuning learning rate, depth"
     },
-    techStack: ["Python", "XGBoost", "FastAPI", "Pandas", "Scikit-Learn", "Replit"],
+    techStack: ["Python", "XGBoost", "FastAPI", "Pandas", "Scikit-Learn"],
     pipeline: "User enters details → FastAPI → XGBoost model → returns prediction → displayed in UI.",
     uniqueSellingPoints: [
       "Localized to Bangalore specific dynamics",
