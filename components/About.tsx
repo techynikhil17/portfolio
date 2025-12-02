@@ -41,9 +41,9 @@ const About: React.FC = () => {
 
           {/* Skill Categories */}
           <div className="mt-10 space-y-6">
-            <SkillGroup icon={<Terminal size={18} />} title="Languages" skills={["Python", "SQL", "TypeScript"]} />
-            <SkillGroup icon={<Cpu size={18} />} title="Machine Learning" skills={["XGBoost", "Scikit-Learn", "Pandas", "TF-IDF"]} />
-            <SkillGroup icon={<Code size={18} />} title="Engineering" skills={["FastAPI", "Next.js", "Vercel", "Gemini API"]} />
+            <SkillGroup icon={<Terminal size={18} />} title="Languages" skills={["Python", "SQL", "Java"]} />
+            <SkillGroup icon={<Cpu size={18} />} title="Machine Learning" skills={["XGBoost", "Scikit-Learn", "Pandas"]} />
+            <SkillGroup icon={<Code size={18} />} title="Engineering" skills={["FastAPI", "Docker", "Vercel", "Gemini API"]} />
           </div>
         </motion.div>
 
