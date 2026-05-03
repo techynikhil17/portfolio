@@ -25,14 +25,11 @@ const App: React.FC = () => {
     <main className="relative w-full min-h-screen text-slate-300 selection:bg-neon-green selection:text-navy-900">
       <Background />
 
-      {/* Main Content - Always rendered to preserve scroll, but pushed back when modal is open */}
+      {/* Main Content - dim only on modal (no always-on filter, which would force compositing every frame) */}
       <motion.div
-        animate={{
-          scale: selectedProject ? 0.95 : 1,
-          opacity: selectedProject ? 0.5 : 1,
-          filter: selectedProject ? 'blur(10px)' : 'blur(0px)',
-        }}
-        transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+        animate={{ opacity: selectedProject ? 0.4 : 1 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+        style={{ pointerEvents: selectedProject ? 'none' : 'auto' }}
         className="relative z-10 flex flex-col gap-0"
       >
         <Hero />

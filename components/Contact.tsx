@@ -10,7 +10,7 @@ const Contact: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: false }}
+        viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
         className="glass-card max-w-3xl w-full p-12 rounded-2xl text-center border border-white/5 shadow-2xl relative overflow-hidden"
       >

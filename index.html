@@ -8,18 +8,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
-              display: ['Space Grotesk', 'sans-serif'],
+              display: ['Rajdhani', 'sans-serif'],
+              mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
             },
             colors: {
               navy: {
-                900: '#020c1b',
+                900: '#010810',
                 800: '#0a192f',
                 700: '#112240',
               },
@@ -27,6 +28,9 @@
                 blue: '#00f0ff',
                 purple: '#b537f2',
                 green: '#64ffda',
+              },
+              stark: {
+                cyan: '#00e5ff',
               }
             },
             animation: {
@@ -37,8 +41,8 @@
       }
     </script>
     <style>
-      body {
-        background-color: #020c1b;
+      html, body {
+        background-color: #010810;
         color: #e6f1ff;
         overflow-x: hidden;
       }

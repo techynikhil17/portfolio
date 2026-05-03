@@ -35,7 +35,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ onSelectProject }) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
+          viewport={{ once: true, amount: 0.2 }}
           className="mb-20"
         >
           <h2 className="flex items-center text-3xl md:text-5xl font-display font-bold text-white mb-6">
@@ -49,7 +49,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ onSelectProject }) => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.15 }}
           className="grid grid-cols-1 lg:grid-cols-3 gap-8"
         >
           {PROJECTS.map((project, index) => (
@@ -59,16 +59,18 @@ const Portfolio: React.FC<PortfolioProps> = ({ onSelectProject }) => {
               className="group relative rounded-2xl overflow-hidden cursor-pointer bg-navy-800/40 backdrop-blur-sm border border-white/5 hover:border-neon-green/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] flex flex-col h-[500px]"
               onClick={() => onSelectProject(project)}
             >
-              {/* Image Half */}
+              {/* Image Half — no mix-blend-multiply / grayscale filter (both very expensive on scroll) */}
               <div className="h-3/5 w-full relative overflow-hidden">
-                 <div className="absolute inset-0 bg-navy-900/40 group-hover:bg-transparent transition-all duration-500 z-10 mix-blend-multiply"></div>
+                 <div className="absolute inset-0 bg-navy-900/30 group-hover:bg-transparent transition-colors duration-500 z-10"></div>
                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900 to-transparent z-20"></div>
-                 <motion.img
-                   src={project.image} 
+                 <img
+                   src={project.image}
                    alt={project.title}
-                   className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out grayscale group-hover:grayscale-0"
+                   loading="lazy"
+                   decoding="async"
+                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                  />
-                 <div className="absolute top-4 right-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50 backdrop-blur-md p-2 rounded-full text-neon-green">
+                 <div className="absolute top-4 right-4 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/60 p-2 rounded-full text-neon-green">
                     <ArrowUpRight size={20} />
                  </div>
               </div>

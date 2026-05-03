@@ -70,15 +70,16 @@ const CREDENTIALS = [
 const About: React.FC = () => {
   return (
     <section id="about" className="py-32 px-6 relative overflow-hidden">
-      {/* Dividing Glow Line */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent opacity-50"></div>
-
-      <div className="max-w-7xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto w-full hud-frame px-6 md:px-10 py-12 md:py-16">
+        <span className="hud-corner hud-tl" />
+        <span className="hud-corner hud-tr" />
+        <span className="hud-corner hud-bl" />
+        <span className="hud-corner hud-br" />
         {/* Section Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: '-80px' }}
+          viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6 }}
           className="flex items-center text-3xl md:text-5xl font-display font-bold text-white mb-6"
         >
@@ -93,7 +94,7 @@ const About: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, margin: '-100px' }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
@@ -119,13 +120,39 @@ const About: React.FC = () => {
                 </div>
               ))}
             </div>
+
+            {/* Credentials Strip */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.08 } },
+              }}
+              className="flex flex-wrap gap-3"
+            >
+              {CREDENTIALS.map(c => (
+                <motion.span
+                  key={c.code}
+                  variants={{
+                    hidden: { opacity: 0, y: 10 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  className="font-mono text-xs px-4 py-2 rounded-full border border-slate-700 bg-navy-800/40 text-slate-400 hover:border-neon-green/50 hover:text-neon-green transition-colors cursor-default"
+                >
+                  <span className="text-neon-green">[{c.code}]</span>{' '}
+                  <span className="text-slate-400">{c.label}</span>
+                </motion.span>
+              ))}
+            </motion.div>
           </motion.div>
 
           {/* RIGHT: Skill Intelligence Panel */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false, margin: '-100px' }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.8 }}
             className="bg-navy-800/30 border border-white/5 rounded-2xl p-6 backdrop-blur-sm max-h-[680px] overflow-y-auto custom-scrollbar space-y-8"
           >
@@ -134,7 +161,7 @@ const About: React.FC = () => {
                 key={domain.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: '-50px' }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: di * 0.1 }}
               >
                 <h4 className={`text-xs font-mono uppercase tracking-widest mb-3 ${domain.headerColor}`}>
@@ -154,32 +181,6 @@ const About: React.FC = () => {
             ))}
           </motion.div>
         </div>
-
-        {/* Credentials Strip */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, margin: '-80px' }}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.08 } },
-          }}
-          className="mt-16 flex flex-wrap gap-3"
-        >
-          {CREDENTIALS.map(c => (
-            <motion.span
-              key={c.code}
-              variants={{
-                hidden: { opacity: 0, y: 10 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              className="font-mono text-xs px-4 py-2 rounded-full border border-slate-700 bg-navy-800/40 text-slate-400 hover:border-neon-green/50 hover:text-neon-green transition-colors cursor-default"
-            >
-              <span className="text-neon-green">[{c.code}]</span>{' '}
-              <span className="text-slate-400">{c.label}</span>
-            </motion.span>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

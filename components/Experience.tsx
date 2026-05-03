@@ -6,13 +6,15 @@ import { EXPERIENCE } from '../data';
 const Experience: React.FC = () => {
   return (
     <section id="experience" className="py-32 px-6 relative">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent opacity-50"></div>
-
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto hud-frame px-6 md:px-10 py-12 md:py-16 relative">
+        <span className="hud-corner hud-tl" />
+        <span className="hud-corner hud-tr" />
+        <span className="hud-corner hud-bl" />
+        <span className="hud-corner hud-br" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
+          viewport={{ once: true, amount: 0.2 }}
           className="mb-20"
         >
           <h2 className="flex items-center text-3xl md:text-5xl font-display font-bold text-white mb-6">
@@ -28,7 +30,7 @@ const Experience: React.FC = () => {
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-80px" }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="relative pl-8 border-l border-slate-800 hover:border-neon-blue/50 transition-colors duration-500"
             >
