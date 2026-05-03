@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Hero from './components/Hero';
 import About from './components/About';
+import Experience from './components/Experience';
 import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
 import Background from './components/Background';
@@ -36,6 +37,7 @@ const App: React.FC = () => {
       >
         <Hero />
         <About />
+        <Experience />
         <Portfolio onSelectProject={setSelectedProject} />
         <Contact />
       </motion.div>

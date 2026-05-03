@@ -17,7 +17,7 @@ const Contact: React.FC = () => {
         {/* Decorative Glows */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-1 bg-gradient-to-r from-transparent via-neon-green to-transparent opacity-50"></div>
         
-        <p className="text-neon-green font-mono mb-4 tracking-widest text-sm">03. WHAT'S NEXT?</p>
+        <p className="text-neon-green font-mono mb-4 tracking-widest text-sm">05. WHAT'S NEXT?</p>
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-display">Get In Touch</h2>
         <p className="text-slate-400 text-lg mb-10 leading-relaxed">
           I'm currently open to new opportunities in AI Engineering and Full Stack Development. 

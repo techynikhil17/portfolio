@@ -57,21 +57,50 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onClose }) => {
                 {project.shortDescription}
               </p>
               
-              {/* Try It Out Button for GhostFolio */}
-              {project.id === 'ghostfolio' && (
-                <motion.a
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  href="https://ghostfoliov2.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 mt-8 px-6 py-3 bg-neon-purple/10 border border-neon-purple text-neon-purple rounded-lg hover:bg-neon-purple hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(181,55,242,0.15)] hover:shadow-[0_0_30px_rgba(181,55,242,0.4)] font-mono text-sm font-bold tracking-wider"
-                >
-                  <ExternalLink size={18} />
-                  TRY IT OUT
-                </motion.a>
-              )}
+              <div className="flex flex-wrap gap-3 mt-8">
+                {project.liveUrl && (
+                  <motion.a
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-neon-purple/10 border border-neon-purple text-neon-purple rounded-lg hover:bg-neon-purple hover:text-white transition-all duration-300 shadow-[0_0_20px_rgba(181,55,242,0.15)] hover:shadow-[0_0_30px_rgba(181,55,242,0.4)] font-mono text-sm font-bold tracking-wider"
+                  >
+                    <ExternalLink size={18} />
+                    LIVE DEMO
+                  </motion.a>
+                )}
+                {project.npmUrl && (
+                  <motion.a
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.65 }}
+                    href={project.npmUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-red-500/10 border border-red-400 text-red-400 rounded-lg hover:bg-red-400 hover:text-white transition-all duration-300 font-mono text-sm font-bold tracking-wider"
+                  >
+                    <ExternalLink size={18} />
+                    VIEW ON NPM
+                  </motion.a>
+                )}
+                {project.githubUrl && (
+                  <motion.a
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/20 text-slate-300 rounded-lg hover:bg-white/10 hover:text-white transition-all duration-300 font-mono text-sm font-bold tracking-wider"
+                  >
+                    <ExternalLink size={18} />
+                    GITHUB
+                  </motion.a>
+                )}
+              </div>
             </div>
           </motion.div>
         </div>

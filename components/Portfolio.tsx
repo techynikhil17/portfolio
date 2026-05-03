@@ -39,7 +39,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ onSelectProject }) => {
           className="mb-20"
         >
           <h2 className="flex items-center text-3xl md:text-5xl font-display font-bold text-white mb-6">
-            <span className="text-neon-purple mr-4 font-mono text-2xl md:text-3xl">02.</span> 
+            <span className="text-neon-purple mr-4 font-mono text-2xl md:text-3xl">04.</span>
             Selected Works
           </h2>
           <div className="h-[1px] bg-gradient-to-r from-neon-purple/50 to-transparent max-w-md"></div>

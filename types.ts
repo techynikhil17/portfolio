@@ -31,6 +31,9 @@ export interface Project {
     featureEngineering: string;
     optimization?: string;
   };
+  githubUrl?: string;
+  npmUrl?: string;
+  liveUrl?: string;
 }
 
 export interface SocialLink {

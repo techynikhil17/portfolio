@@ -1,84 +1,188 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { SKILLS } from '../data';
-import { Code, Terminal, Cpu } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+
+const DOMAINS = [
+  {
+    name: '⚡ LLM & GENERATIVE AI',
+    headerColor: 'text-neon-purple',
+    skills: [
+      'GPT-4', 'Gemini 3', 'Claude', 'Mistral', 'LLaMA 3', 'Qwen 3.5', 'Kimi K2.6',
+      'Prompt Engineering', 'Chain-of-Thought', 'Few-Shot', 'RAG',
+      'Embeddings', 'Vector Search', 'FAISS', 'ChromaDB',
+      'AI Agents', 'Multi-Agent Orchestration', 'Function Calling', 'ReAct',
+      'HuggingFace Transformers', 'Ollama', 'vLLM',
+      'LoRA', 'PEFT', 'Hallucination Detection',
+    ],
+  },
+  {
+    name: '🎙️ VOICE & REAL-TIME AI',
+    headerColor: 'text-neon-blue',
+    skills: [
+      'Whisper', 'Deepgram', 'ElevenLabs', 'Kokoro', 'Coqui', 'Bark',
+      'STT→LLM→TTS Pipeline', 'Async Streaming', 'WebSocket Orchestration',
+      'Interruption Handling', 'Persona Switching', 'Session Management',
+    ],
+  },
+  {
+    name: '🧠 MACHINE LEARNING',
+    headerColor: 'text-red-400',
+    skills: [
+      'Scikit-learn', 'XGBoost', 'LightGBM', 'CatBoost',
+      'PyTorch', 'TensorFlow', 'NLP', 'Transformers',
+      'Tokenization', 'Embeddings', 'Sentiment Analysis', 'NER',
+      'Pandas', 'NumPy', 'Feature Engineering', 'Ensemble Methods',
+      'Cross-Validation', 'SHAP', 'AUC-ROC', 'F1',
+    ],
+  },
+  {
+    name: '🔧 BACKEND & INFRA',
+    headerColor: 'text-neon-green',
+    skills: [
+      'Python', 'Django', 'FastAPI', 'REST APIs', 'PostgreSQL',
+      'Redis', 'Supabase', 'Docker', 'Git', 'Vercel', 'Azure',
+      'TypeScript', 'SQL', 'Celery', 'WebSockets',
+    ],
+  },
+  {
+    name: '🎨 FRONTEND & TOOLING',
+    headerColor: 'text-yellow-400',
+    skills: [
+      'React', 'Tailwind CSS', 'Framer Motion', 'TypeScript',
+      'n8n', 'Cursor AI', 'Claude Code', 'GitHub Copilot', 'Replit',
+    ],
+  },
+];
+
+const STATUS_ROWS = [
+  { key: 'DESIGNATION', value: 'AI Product Developer Intern @ Rooman Technologies' },
+  { key: 'LOCATION', value: 'Bangalore, India' },
+  { key: 'STATUS', value: 'Open to AI Engineer / SWE / Intern roles' },
+];
+
+const CREDENTIALS = [
+  { code: 'AZ-900', label: 'Microsoft Certified: Azure Fundamentals' },
+  { code: 'INF-AI', label: 'Infosys: Principles of Generative AI' },
+  { code: 'ANT-101', label: 'Anthropic: Claude 101' },
+  { code: 'ANT-CC', label: 'Anthropic: Claude Code in Action' },
+  { code: 'IJRAR', label: 'Research Publication: AI-Based Crime Pattern Prediction (87% acc, XGBoost)' },
+];
 
 const About: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-  
-  const imageY = useTransform(scrollYProgress, [0, 1], [100, -50]);
-  
   return (
-    <section id="about" ref={sectionRef} className="py-32 px-6 min-h-screen flex items-center relative overflow-hidden">
+    <section id="about" className="py-32 px-6 relative overflow-hidden">
       {/* Dividing Glow Line */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent opacity-50"></div>
 
-      <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        
-        {/* Text Content */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
+      <div className="max-w-7xl mx-auto w-full">
+        {/* Section Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-80px' }}
+          transition={{ duration: 0.6 }}
+          className="flex items-center text-3xl md:text-5xl font-display font-bold text-white mb-6"
         >
-          <h2 className="flex items-center text-3xl md:text-4xl font-display font-bold text-white mb-8">
-            <span className="text-neon-green mr-4 font-mono text-2xl">01.</span> About Me
-          </h2>
-          
-          <div className="space-y-6 text-slate-400 text-lg leading-relaxed font-light">
-            <p>
-              I’m <span className="text-white font-medium">Nikhil</span>, a final-year ISE student with a relentless focus on bridging the gap between <span className="text-neon-purple">theoretical AI</span> and <span className="text-neon-blue">deployed applications</span>.
-            </p>
-            <p>
-              My work involves analyzing failed startups with large language models, predicting urban crime patterns using XGBoost, and building recommendation engines that actually understand context. I don't just run Jupyter notebooks—I build APIs, deploy to edge functions, and solve real-world problems.
-            </p>
-          </div>
+          <span className="text-neon-green mr-4 font-mono text-2xl md:text-3xl">01.</span>
+          About Me
+        </motion.h2>
+        <div className="h-[1px] bg-gradient-to-r from-neon-green/50 to-transparent max-w-md mb-16"></div>
 
-          {/* Skill Categories */}
-          <div className="mt-10 space-y-6">
-            <SkillGroup icon={<Terminal size={18} />} title="Languages" skills={["Python", "SQL", "Java"]} />
-            <SkillGroup icon={<Cpu size={18} />} title="Machine Learning" skills={["XGBoost", "Scikit-Learn", "Pandas", "TensorFlow"]} />
-            <SkillGroup icon={<Code size={18} />} title="Engineering" skills={["FastAPI", "Docker", "Flask", "REST API", "Vercel"]} />
-          </div>
+        {/* Two-column grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* LEFT: Bio + Status */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: '-100px' }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
+            <div className="space-y-6 text-slate-400 text-lg leading-relaxed font-light">
+              <p>
+                I'm <span className="text-white font-medium">Nikhil</span> — AI Product Developer building production-grade <span className="text-neon-purple">LLM systems</span>, <span className="text-neon-blue">voice agents</span>, and AI-powered SaaS. Not demos. Not notebooks. Shipped systems.
+              </p>
+              <p>
+                Currently interning at <span className="text-white font-medium">Rooman Technologies</span> where I built a real-time multi-persona STT→LLM→TTS voice agent, engineered full CRM modules (Accounts, Meetings, Tasks) with Django + Convex, and led intern teams shipping ERP systems used in production.
+              </p>
+              <p>
+                Targeting <span className="text-neon-green">AI Engineer</span> and <span className="text-neon-green">AI/SWE Intern</span> roles.
+              </p>
+            </div>
+
+            {/* Status Terminal Card */}
+            <div className="bg-black/40 border border-slate-800 rounded-xl p-6 font-mono text-sm space-y-3">
+              {STATUS_ROWS.map(row => (
+                <div key={row.key} className="flex flex-wrap items-start gap-3">
+                  <span className="text-slate-500 w-32 flex-shrink-0">{row.key}</span>
+                  <span className="text-neon-green">→</span>
+                  <span className="text-slate-300 flex-1 min-w-0">{row.value}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* RIGHT: Skill Intelligence Panel */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: '-100px' }}
+            transition={{ duration: 0.8 }}
+            className="bg-navy-800/30 border border-white/5 rounded-2xl p-6 backdrop-blur-sm max-h-[680px] overflow-y-auto custom-scrollbar space-y-8"
+          >
+            {DOMAINS.map((domain, di) => (
+              <motion.div
+                key={domain.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: di * 0.1 }}
+              >
+                <h4 className={`text-xs font-mono uppercase tracking-widest mb-3 ${domain.headerColor}`}>
+                  {domain.name}
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {domain.skills.map(skill => (
+                    <span
+                      key={skill}
+                      className="text-xs font-mono px-2.5 py-1 rounded border border-white/5 bg-navy-800/60 text-slate-400 cursor-default hover:border-neon-green/40 hover:text-white transition-colors duration-200"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Credentials Strip */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: '-80px' }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.08 } },
+          }}
+          className="mt-16 flex flex-wrap gap-3"
+        >
+          {CREDENTIALS.map(c => (
+            <motion.span
+              key={c.code}
+              variants={{
+                hidden: { opacity: 0, y: 10 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              className="font-mono text-xs px-4 py-2 rounded-full border border-slate-700 bg-navy-800/40 text-slate-400 hover:border-neon-green/50 hover:text-neon-green transition-colors cursor-default"
+            >
+              <span className="text-neon-green">[{c.code}]</span>{' '}
+              <span className="text-slate-400">{c.label}</span>
+            </motion.span>
+          ))}
         </motion.div>
-
-        {/* Visual */}
-        <motion.div style={{ y: imageY }} className="relative group hidden md:block">
-          <div className="absolute inset-0 border-2 border-neon-green rounded-lg translate-x-5 translate-y-5 transition-transform duration-300 group-hover:translate-x-3 group-hover:translate-y-3"></div>
-          <div className="relative rounded-lg overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 aspect-[4/5]">
-             <img 
-               src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop" 
-               alt="Nikhil Profile" 
-               className="object-cover w-full h-full"
-             />
-             <div className="absolute inset-0 bg-navy-900/30 hover:bg-transparent transition-colors duration-300"></div>
-          </div>
-        </motion.div>
-
       </div>
     </section>
   );
 };
-
-const SkillGroup = ({ icon, title, skills }: { icon: React.ReactNode, title: string, skills: string[] }) => (
-  <div className="flex items-start gap-4">
-    <div className="mt-1 text-neon-green">{icon}</div>
-    <div>
-      <h4 className="text-white font-mono text-sm mb-2 uppercase tracking-wider">{title}</h4>
-      <div className="flex flex-wrap gap-2">
-        {skills.map(skill => (
-          <span key={skill} className="text-sm text-slate-400 bg-navy-800 px-2 py-1 rounded hover:text-white transition-colors cursor-default">
-            {skill}
-          </span>
-        ))}
-      </div>
-    </div>
-  </div>
-);
 
 export default About;

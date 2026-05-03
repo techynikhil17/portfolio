@@ -44,7 +44,78 @@ export const PROJECTS: Project[] = [
       "Not a toy project — uses real startup data.",
       "Real AI analysis pipeline.",
       "Production-grade public API."
-    ]
+    ],
+    liveUrl: "https://ghostfoliov2.vercel.app/"
+  },
+  {
+    id: "errbuddy",
+    title: "errbuddy",
+    shortDescription: "npm CLI tool that intercepts terminal stderr and turns raw stack traces into actionable fix panels.",
+    tags: ["Node.js", "CLI", "npm", "Open Source"],
+    image: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?q=80&w=2574&auto=format&fit=crop",
+    overview: "errbuddy is a published npm CLI tool that wraps any terminal command and intercepts its stderr stream in real time. Instead of dumping raw stack traces, it classifies errors across 11 runtimes using a two-tier hybrid detector (known-signature matching + heuristic fallback) and replaces them with clean, structured diagnostic panels with actionable fix suggestions.",
+    problemStatement: "Developers — especially beginners — waste enormous time decoding cryptic stack traces. Raw stderr output is noisy, unstructured, and rarely tells you what to actually do next. There was no lightweight, API-key-free CLI tool that intelligently classifies and explains terminal errors across multiple runtimes.",
+    datasetDetails: {
+      source: "11 runtime error signature libraries (Node.js, Python, Go, Rust, Docker, Prisma, TypeScript, Git, npm, Bash, Java)",
+      fields: ["Error signature patterns", "Runtime classifier", "Fix suggestions", "Severity level", "Fallback heuristic output"]
+    },
+    features: [
+      "Intercepts stderr from any command in real time",
+      "Two-tier hybrid detection: known-signature matching + heuristic fallback",
+      "Supports 11 runtimes: Node.js, Python, Go, Rust, Docker, Prisma, TypeScript, Git, npm, Bash, Java",
+      "Structured diagnostic panel with classify → explain → suggest pipeline",
+      "Zero API key required — fully offline and free",
+      "Published on npm: installable with `npm install -g errbuddy`",
+      "Clean minimal panels for unknown errors (no hallucinated output)"
+    ],
+    architecture: {
+      backend: "Node.js (CommonJS)",
+      description: "User runs `errbuddy <command>` → stderr stream intercepted → two-tier classifier runs → known signature matched or heuristic applied → structured panel rendered in terminal."
+    },
+    techStack: ["Node.js", "npm", "CommonJS", "stderr stream interception", "Regex pattern matching"],
+    pipeline: "User runs errbuddy <command> → stderr intercepted in real time → Tier 1: known-signature match across 11 runtimes → Tier 2: heuristic fallback if no match → classify → explain → suggest panel rendered",
+    uniqueSellingPoints: [
+      "Published and live on npm — real open-source tool with actual users.",
+      "Zero dependencies on LLMs or external APIs — works offline, always free.",
+      "Two-tier hybrid detection avoids both false positives and silent failures."
+    ],
+    githubUrl: "https://github.com/techynikhil17/ErrorBuddy",
+    npmUrl: "https://npmjs.com/package/errbuddy"
+  },
+  {
+    id: "npm-hawk",
+    title: "NPM Hawk",
+    shortDescription: "Full-stack npm security dashboard with real-time CVE scanning and composite health scoring.",
+    tags: ["React", "Node.js", "Express", "Security", "OSV.dev API"],
+    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop",
+    overview: "NPM Hawk is a full-stack security monitoring dashboard for npm packages. It auto-discovers all packages published by a GitHub/npm username, scans each one for known CVEs via the OSV.dev API in real time, computes a composite health score (0–100) across five dimensions, and generates a side-by-side multi-package comparison matrix. Deployed on Vercel (frontend) and Railway (backend).",
+    problemStatement: "npm package maintainers and consumers have no single dashboard to monitor the security health of multiple packages simultaneously. Manually checking CVEs per-package on npm is tedious and lacks scoring or comparison tooling.",
+    datasetDetails: {
+      source: "OSV.dev API (Open Source Vulnerabilities database) + npm registry metadata",
+      fields: ["CVE ID", "Severity", "Package version", "Vulnerability description", "Health score dimensions", "Publish date", "Download stats"]
+    },
+    features: [
+      "Auto-discovery of all npm packages by username",
+      "Real-time CVE scanning via OSV.dev API",
+      "Composite health score (0–100) across 5 dimensions",
+      "Multi-package side-by-side comparison matrix",
+      "Deployed: Vercel (frontend) + Railway (backend)"
+    ],
+    architecture: {
+      frontend: "React + Tailwind CSS",
+      backend: "Node.js + Express",
+      hosting: "Vercel + Railway",
+      description: "User enters npm username → backend auto-discovers all packages from npm registry → OSV.dev API queried per package for CVEs → health score computed → comparison matrix rendered in frontend."
+    },
+    techStack: ["React", "Node.js", "Express", "OSV.dev API", "Tailwind CSS", "Vercel", "Railway"],
+    pipeline: "Username entered → npm registry queried for all packages → OSV.dev API scanned per package → CVEs parsed → 5-dimension health score computed → comparison matrix rendered",
+    uniqueSellingPoints: [
+      "Auto-discovers all packages for any npm username — no manual input per package.",
+      "Composite 5-dimension health scoring goes beyond simple CVE count.",
+      "Live deployed tool — not a prototype."
+    ],
+    githubUrl: "https://github.com/techynikhil17/NPM-Hawk",
+    liveUrl: "https://npm-hawk.vercel.app"
   },
   {
     id: "crime-prediction",
@@ -116,6 +187,44 @@ export const PROJECTS: Project[] = [
     uniqueSellingPoints: [
       "Focuses on plot content rather than user ratings",
       "Highly interpretable results"
+    ]
+  }
+];
+
+export const EXPERIENCE = [
+  {
+    role: "AI Product Developer Intern",
+    company: "Rooman Technologies Pvt. Ltd.",
+    location: "Bangalore, India",
+    period: "2026 – Present",
+    techStack: ["Python", "Django", "React", "PostgreSQL", "Convex", "FastAPI", "Docker", "REST APIs", "STT", "TTS", "LLM"],
+    projects: [
+      {
+        name: "Voice Agent",
+        bullets: [
+          "Stabilized a real-time multi-persona voice agent using streaming STT → LLM → TTS pipelines enabling seamless persona switching without session resets.",
+          "Resolved complex async and streaming failures including routing errors, STT reconnection loops, silent handoffs, and interruption deadlocks.",
+          "Benchmarked open-source TTS models for conversational AI — evaluating latency, streaming feasibility, and deployment constraints.",
+          "Designed deterministic routing prompts and persistent streaming logic to maintain low-latency conversational voice interactions."
+        ]
+      },
+      {
+        name: "CRM Modules — Accounts, Meetings, Tasks",
+        bullets: [
+          "Engineered the Accounts module with full CRUD, six view modes (List, Kanban, Grid, Chart, Timeline, Split), 18+ filterable fields, and a deduplication engine for group-based merge resolution.",
+          "Built the Meetings module with Google Meet auto-provisioning, RSVP participant tracking, real-time reminder polling every 30 seconds, and role-based visibility for host vs. admin users.",
+          "Developed the Tasks module with bidirectional account sync, overdue detection, recurring task configuration, and five-status lifecycle management with automatic closedAt timestamping.",
+          "Implemented cross-module Bulk Actions system (mass delete, transfer, update) with criteria-based filtering and server-side preview across Accounts, Meetings, and Tasks.",
+          "Designed RESTful Django proxy APIs mapping snake_case frontend fields to camelCase Convex backend, with CSV import/export, soft-delete/restore flows, and timeline audit logging."
+        ]
+      },
+      {
+        name: "ERP Modules",
+        bullets: [
+          "Built RBAC-secured ERP modules with normalized database schemas, dynamic dashboards, and advanced filtering.",
+          "Delivered scalable React frontend systems with server-side pagination, debounced search, and reusable UI components across Git-tracked version control workflows."
+        ]
+      }
     ]
   }
 ];
