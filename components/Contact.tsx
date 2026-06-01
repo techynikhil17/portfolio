@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, Download } from 'lucide-react';
 import { SOCIAL_LINKS } from '../data';
 
 const Contact: React.FC = () => {
@@ -24,12 +24,21 @@ const Contact: React.FC = () => {
           Whether you have a question, a project idea, or just want to say hi, my inbox is always open.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <a 
-            href="mailto:nikhilchowdary334@gmail.com" 
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap">
+          <a
+            href="mailto:nikhilchowdary334@gmail.com"
             className="px-8 py-4 bg-transparent border border-neon-green text-neon-green font-mono rounded hover:bg-neon-green/10 transition-all duration-300 flex items-center gap-2"
           >
             <Mail size={18} /> Say Hello
+          </a>
+          <a
+            href="/Nikhil_AI_Resume.pdf"
+            download="Nikhil_AI_Resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="px-8 py-4 bg-neon-green/10 border border-neon-green text-neon-green font-mono rounded hover:bg-neon-green hover:text-navy-900 transition-all duration-300 flex items-center gap-2 shadow-[0_0_20px_rgba(100,255,218,0.15)] hover:shadow-[0_0_30px_rgba(100,255,218,0.4)]"
+          >
+            <Download size={18} /> Download Resume
           </a>
           <div className="flex gap-4">
             <a href={SOCIAL_LINKS.github} target="_blank" rel="noreferrer" className="p-4 bg-navy-900 rounded-full text-slate-400 hover:text-white hover:bg-navy-800 transition-all"><Github size={20} /></a>
