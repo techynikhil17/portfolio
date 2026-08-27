@@ -32,8 +32,8 @@ const Contact: React.FC = () => {
             <Mail size={18} /> Say Hello
           </a>
           <a
-            href="/Nikhil_AI_Resume.pdf"
-            download="Nikhil_AI_Resume.pdf"
+            href="/Nikhil.pdf"
+            download="Nikhil.pdf"
             target="_blank"
             rel="noreferrer"
             className="px-8 py-4 bg-neon-green/10 border border-neon-green text-neon-green font-mono rounded hover:bg-neon-green hover:text-navy-900 transition-all duration-300 flex items-center gap-2 shadow-[0_0_20px_rgba(100,255,218,0.15)] hover:shadow-[0_0_30px_rgba(100,255,218,0.4)]"

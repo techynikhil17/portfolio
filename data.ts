@@ -188,6 +188,114 @@ export const PROJECTS: Project[] = [
       "Focuses on plot content rather than user ratings",
       "Highly interpretable results"
     ]
+  },
+  {
+    id: "lenny-growth-assistant",
+    title: "Lenny Growth Assistant",
+    shortDescription: "Grounded RAG product & growth advisor over Lenny's Podcast transcripts, with citation-backed answers and generated essays.",
+    tags: ["GenAI", "RAG", "FastAPI", "Claude", "pgvector"],
+    image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=2670&auto=format&fit=crop",
+    overview: "A grounded product & growth advisor built on ~300 Lenny's Podcast episode transcripts. Every answer is traceable to a real guest and episode, or the assistant explicitly says the archive doesn't cover it instead of guessing. Can also generate Ship 30 for 30-style essays and Markdown/HTML artifacts rendered in a security-sandboxed viewer. Built for a Forward Deployed Engineer take-home assignment.",
+    problemStatement: "Generic LLM chat over a knowledge corpus tends to hallucinate confidently instead of admitting gaps, and provider lock-in makes evaluation and cost control hard. This project needed grounded, citation-backed answers with a swappable local/cloud model backend and a safe way to render generated documents.",
+    datasetDetails: {
+      source: "~300 Lenny's Podcast episode transcripts, ingested via an idempotent CLI pipeline and embedded with local sentence-transformers into Postgres/pgvector.",
+      fields: ["Guest", "Episode", "Transcript excerpt", "YouTube link", "Embedding vector"]
+    },
+    features: [
+      "Grounded multi-turn Q&A with visible, expandable citations back to guest/episode/excerpt",
+      "Ship 30 for 30 essay generation as a dedicated skill, not a one-off prompt",
+      "Markdown/HTML artifact generation rendered in a sandboxed, security-isolated viewer",
+      "Runtime-switchable local (Ollama) or cloud (Anthropic Claude) model, no restart required",
+      "Animated marketing landing page separate from the working chat app",
+      "Full automated test suite covering retrieval, session isolation, agent routing, and artifact XSS sanitization"
+    ],
+    architecture: {
+      frontend: "React + TypeScript (landing page + chat app)",
+      backend: "FastAPI, provider-agnostic tool-calling agent loop",
+      ai_model: "Claude (Anthropic) or local Ollama (llama3.2), switchable at runtime",
+      data: "PostgreSQL + pgvector for retrieval, local sentence-transformers for embeddings",
+      description: "User asks a question → FastAPI agent routes to one of three skills (grounded_qa, ship30, artifact_gen) → pgvector similarity search retrieves relevant transcript chunks → LLM (Ollama or Claude) generates a grounded response with citations → Markdown/HTML artifacts render in a sandboxed panel."
+    },
+    techStack: ["FastAPI", "React", "TypeScript", "PostgreSQL", "pgvector", "Claude API", "Ollama", "Docker", "SQLAlchemy", "Alembic"],
+    pipeline: "Transcript ingestion (idempotent CLI) → chunking + local embedding → pgvector storage → user query → agent skill routing → grounded retrieval → LLM response with citations or artifact generation → sandboxed rendering.",
+    uniqueSellingPoints: [
+      "Explicitly refuses to answer outside its grounded corpus instead of hallucinating.",
+      "Two-layer artifact security (sandboxed iframe + server-side sanitization) verified against a dozen XSS payloads.",
+      "Genuine runtime provider switch between local and cloud LLMs, not just a config toggle."
+    ],
+    githubUrl: "https://github.com/techynikhil17/lenny-growth-assistant"
+  },
+  {
+    id: "vaultx",
+    title: "VaultX",
+    shortDescription: "Zero-knowledge password manager with client-side AES-256-GCM encryption, breach checking, and a vault health score.",
+    tags: ["Next.js", "Security", "Supabase", "Web Crypto API", "Hackathon Winner"],
+    image: "https://images.unsplash.com/photo-1633265486064-086b219458ec?q=80&w=2670&auto=format&fit=crop",
+    overview: "VaultX is a zero-knowledge password manager and strength analyzer. Vault entries are encrypted on-device with AES-256-GCM using a key derived from the user's master password via PBKDF2 (310,000 iterations); the master password and derived key never leave the browser, so the server only ever sees ciphertext. Built as part of the BVA Hackathon — and won.",
+    problemStatement: "Most password managers require trusting the server with plaintext credentials at some point in the pipeline. VaultX needed to guarantee the server can never see vault contents, while still offering breach checking, strength analysis, and a health dashboard.",
+    datasetDetails: {
+      source: "Have I Been Pwned (HIBP) breach database, queried via k-Anonymity so only the first 5 hex characters of a password's SHA-1 hash ever leave the client.",
+      fields: ["Password entropy", "Breach status", "Reuse count", "Vault health score", "Activity log events"]
+    },
+    features: [
+      "Client-side AES-256-GCM encryption with per-entry IV; server stores ciphertext only",
+      "PBKDF2-SHA256 (310k iterations) master-password key derivation, key never leaves the browser",
+      "Password strength analyzer: entropy, crack-time estimate, pattern detection",
+      "HIBP breach check via k-Anonymity, single and bulk vault health scan (0-100 score)",
+      "Supabase Row Level Security so users can only ever access their own rows",
+      "Activity log, keyboard shortcuts, clipboard auto-clear after 30 seconds"
+    ],
+    architecture: {
+      frontend: "Next.js 14 (App Router)",
+      backend: "Supabase (Postgres + Auth + Row Level Security)",
+      data: "Encrypted vault rows in Supabase, decrypted only in-browser via Web Crypto API",
+      hosting: "Vercel",
+      description: "User unlocks vault with master password → PBKDF2 derives an AES-256-GCM key client-side → vault CRUD operations encrypt/decrypt entirely in-browser → only ciphertext is sent to Supabase, which enforces per-user row-level security independent of application logic."
+    },
+    techStack: ["Next.js 14", "TypeScript", "Supabase", "Web Crypto API", "PostgreSQL", "Zod"],
+    pipeline: "Master password entered → PBKDF2-SHA256 (310k iters) derives AES key client-side → vault entries encrypted/decrypted in-browser → ciphertext synced to Supabase → RLS enforces per-user isolation server-side.",
+    uniqueSellingPoints: [
+      "True zero-knowledge design — the server never has access to plaintext or the derived key.",
+      "HIBP breach checking without ever exposing the full password hash.",
+      "Won the BVA Hackathon."
+    ],
+    githubUrl: "https://github.com/techynikhil17/VaultX",
+    liveUrl: "https://vault-x-mauve.vercel.app"
+  },
+  {
+    id: "avems",
+    title: "AI Video Evidence Management System",
+    shortDescription: "Body-worn camera video evidence platform for law enforcement — AI detection, face/plate recognition, and grounded bilingual incident summaries.",
+    tags: ["Computer Vision", "YOLO", "FastAPI", "Vector Search", "Team Project"],
+    image: "https://images.unsplash.com/photo-1617791160536-598cf32026fb?q=80&w=2670&auto=format&fit=crop",
+    overview: "AVEMS is a centralized platform for ingesting, storing, analyzing, searching, and exporting body-worn camera evidence using computer vision, vector search, and LLMs. Built as a team project (contributor) with evidence integrity and bilingual (English + Kannada) support as hard, non-negotiable design constraints rather than bolted-on features.",
+    problemStatement: "Law enforcement agencies generate huge volumes of bodycam footage with no efficient way to search, cross-reference, or summarize it for investigations, while any evidence-handling system must guarantee chain-of-custody integrity and support regional-language content without corrupting it.",
+    datasetDetails: {
+      source: "Real bodycam footage processed end-to-end through the live pipeline; face embeddings and detections indexed in Qdrant.",
+      fields: ["Face embeddings (512-d)", "Vehicle/plate detections (EN + Kannada OCR)", "Weapon/person/object detections", "Chain-of-custody audit events", "Grounded incident summaries"]
+    },
+    features: [
+      "End-to-end pipeline: upload → detection → face/attribute recognition → ANPR → LLM incident summary, fully automatic",
+      "Dual-model detection: YOLO11m for people/vehicles/bags plus a dedicated higher-recall weapon model",
+      "Face re-identification via InsightFace embeddings + Qdrant similarity search",
+      "Bilingual ANPR/OCR (English + Kannada) with strict script separation, never concatenated",
+      "Content-addressed SHA-256 storage with an append-only, tamper-evident audit trail",
+      "Idempotent, retry-safe Celery task graph — redeliveries never duplicate vectors or rows"
+    ],
+    architecture: {
+      backend: "FastAPI + Celery (GPU/CPU queue split)",
+      ai_model: "YOLO11m + YOLOv8 (weapon), InsightFace (buffalo_l), Florence-2, PaddleOCR, Claude Haiku 4.5",
+      data: "PostgreSQL (relational) + Qdrant (vectors) + MinIO (object storage)",
+      description: "Video upload → FastAPI hashes and stores it → Celery fans out to a GPU worker (frame-sampled YOLO detection, batched) → detections fan out again in parallel to face/attribute extraction (GPU) and plate OCR (CPU) → a chord callback grounds an LLM incident summary once both finish → results land in Postgres + Qdrant for search."
+    },
+    techStack: ["Python", "FastAPI", "Celery", "PostgreSQL", "Qdrant", "MinIO", "Redis", "Docker", "YOLOv11", "InsightFace", "Claude API"],
+    pipeline: "Upload (SHA-256 dedup) → GPU frame-sampled detection (~1fps, batched) → parallel fan-out: face/attribute recognition (GPU) + ANPR (CPU) → chord callback triggers grounded LLM summary → indexed in Postgres + Qdrant for search.",
+    uniqueSellingPoints: [
+      "Evidence integrity by construction: content-addressed storage, append-only audit trail, no stuck processing states.",
+      "Latency-engineered pipeline (frame sampling, batching, crop-only recognition, GPU/CPU queue split) rather than naively running every model on every frame.",
+      "Bilingual OCR pipeline that keeps English and Kannada script cleanly separated end-to-end."
+    ],
+    githubUrl: "https://github.com/rezbites/bodydetection"
   }
 ];
 
